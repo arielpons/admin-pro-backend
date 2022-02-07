@@ -49,10 +49,9 @@ const putUsuarios = async(req, res)=>{
                 msg:'No existe un usuario con ese id'
             })
         } 
-        if (usuarioDB.email == req.body.email){
-            delete campos.email;
-        } else{
-            const existeEmail = await Usuario.findOne({email: req.body.email})
+        const {password, google, email, ...campos }= req.body;
+        if (usuarioDB.email !== email){
+            const existeEmail = await Usuario.findOne({email})
             if (existeEmail){
                 return res.status(400).json({
                     ok:false,
@@ -60,10 +59,7 @@ const putUsuarios = async(req, res)=>{
                 })
             }
         }
-        const campos = req.body;
-        delete campos.password;
-        delete campos.google;
-
+        campos.email = email;
         const usuarioActualizado = await Usuario.findByIdAndUpdate(uid, campos, {new: true})
         res.json({
             ok:true,
