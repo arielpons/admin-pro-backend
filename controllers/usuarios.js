@@ -10,6 +10,7 @@ const getUsuarios =  async(req,res)=>{
 }
 const postUsuarios =  async(req,res = response)=>{
     const {email, password, nombre } = req.body;
+    
     try{
         const existeEmail = await Usuario.findOne({email});
         if (existeEmail){
