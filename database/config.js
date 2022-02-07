@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const dbConnection = async ()=>{
     try{
-    await mongoose.connect('mongodb+srv://mean:mean@cluster0.zwwvc.mongodb.net/test');
+    await mongoose.connect('mongodb+srv://mean:mean@cluster0.zwwvc.mongodb.net/hospitaldb');
     console.log("DB online");
     }catch(error){
     console.log(error);

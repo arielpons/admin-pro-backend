@@ -5,15 +5,12 @@ const cors = require('cors')
 const app = express();
 //Configura CORS
 app.use(cors());
+
+app.use(express.json());
 //Base de datos
-dbConnection();
+//dbConnection();
 //rutas
-app.get("/", (req,res)=>{
-    res.json({
-        "ok": true,
-        "msg":"hola papa"
-    })
-});
+app.use('/api/usuarios', require('./routes/usuarios') )
 
 app.listen(3000, ()=>{
     console.log('Servidor corriendo en puerto ' + 3000);
