@@ -15,7 +15,7 @@ const fileUpload = (req, res = response)=>{
         });
     }
     //Validad que exista un archivo
-    if (!req.files || Object.keys(req.file).length === 0){
+    if (!req.files){
         return res.status(400).json({
             ok:false,
             msg:'No hay ningún archivo'
@@ -38,7 +38,7 @@ const fileUpload = (req, res = response)=>{
     const nombreArchivo = `${ uuidv4()}.${extensionArchivo}`;
     
     //Path para guardar la imagen
-    var path = (__dirname + `/uploads/${tipo}/${nombreArchivo}`);
+    var path =  `./uploads/${tipo}/${nombreArchivo}`;
     
     //Mover la imagen
     file.mv(path, (err)=>{
