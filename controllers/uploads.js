@@ -31,14 +31,14 @@ const fileUpload = (req, res = response)=>{
     if (!extensionesValidas.includes(extensionArchivo)){
         return res.status(400).json({
             ok:false,
-            msg:'No ex uan extensión permitida'
+            msg:'No es una extensión permitida'
         });
     }
     //Generar el nombre del archivo
     const nombreArchivo = `${ uuidv4()}.${extensionArchivo}`;
     
     //Path para guardar la imagen
-    const path = `./uploads/${tipo}/${nombreArchivo}`;
+    var path = (__dirname + `/uploads/${tipo}/${nombreArchivo}`);
     
     //Mover la imagen
     file.mv(path, (err)=>{
