@@ -1,0 +1,28 @@
+const { Router } = require("express");
+
+const { check } = require('express-validator');
+const { validarCampos } = require("../middlewares/validar.campos");
+const { validarJWT } = require("../middlewares/validar-jwt");
+const { deleteMedico, putMedico, postMedico, getMedico } = require("../controllers/medicos");
+
+const router = Router();
+
+router.get("/", validarJWT, getMedico);
+
+router.post("/",
+    [
+        validarJWT,
+        check('nombre', 'El nombre del hospital es necesario').not().isEmpty(),
+        check('hospital', 'El hospital del hospital es necesario').isMongoId(),
+        validarCampos,
+    ],
+    postMedico);
+
+router.put("/:id",
+    [],
+    putMedico);
+
+router.delete("/:id",
+    deleteMedico)
+
+module.exports = router;
