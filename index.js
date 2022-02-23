@@ -20,6 +20,6 @@ app.use('/api/todo', require('./routes/busquedas'));
 app.use('/api/upload', require('./routes/uploads'));
 app.use('/api/login', require('./routes/auth'));
 
-app.listen(3000, ()=>{
-    console.log('Servidor corriendo en puerto ' + 3000);
+app.listen(process.env.PORT || 3000, ()=>{
+    console.log('Servidor corriendo en puerto ' + process.env.PORT);
 })
